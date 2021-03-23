@@ -1,4 +1,4 @@
-package com.example.spring.restful.webservice.controllers;
+package com.example.spring.restful.webservice.exceptions;
 
 import com.example.spring.restful.webservice.entity.FormattedException;
 import com.example.spring.restful.webservice.exceptions.UserNotFoundException;
@@ -14,7 +14,7 @@ import java.util.Date;
 public class CustomExceptionHandler {
 
     @ExceptionHandler(UserNotFoundException.class)
-    public final ResponseEntity<FormattedException> handleUserNotFoundException(Exception ex, WebRequest request){
+    public final ResponseEntity<FormattedException> handleUserNotFoundException(UserNotFoundException ex, WebRequest request){
         FormattedException formattedException = FormattedException.formatException(new Date(), ex.getMessage(), request.getDescription(false));
         return new ResponseEntity<>(formattedException,HttpStatus.NOT_FOUND);
     }
